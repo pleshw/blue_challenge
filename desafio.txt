@@ -1,0 +1,3 @@
+Dito isso é bem básico, desenvolver um CRUD para uma agenda (nome,
+email e telefone) utilizando .NET 6 ou superior como backend e
+frontend Vue.js
