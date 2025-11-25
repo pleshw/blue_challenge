@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "c:\\Users\\plesh\\blue_challenge\\BlueChallenge.Telemetry\\BlueChallenge.Telemetry.csproj": {}
+    "C:\\Users\\plesh\\blue_challenge\\BlueChallenge.Telemetry\\BlueChallenge.Telemetry.csproj": {}
   },
   "projects": {
-    "c:\\Users\\plesh\\blue_challenge\\BlueChallenge.Telemetry\\BlueChallenge.Telemetry.csproj": {
+    "C:\\Users\\plesh\\blue_challenge\\BlueChallenge.Telemetry\\BlueChallenge.Telemetry.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "c:\\Users\\plesh\\blue_challenge\\BlueChallenge.Telemetry\\BlueChallenge.Telemetry.csproj",
+        "projectUniqueName": "C:\\Users\\plesh\\blue_challenge\\BlueChallenge.Telemetry\\BlueChallenge.Telemetry.csproj",
         "projectName": "BlueChallenge.Telemetry",
-        "projectPath": "c:\\Users\\plesh\\blue_challenge\\BlueChallenge.Telemetry\\BlueChallenge.Telemetry.csproj",
+        "projectPath": "C:\\Users\\plesh\\blue_challenge\\BlueChallenge.Telemetry\\BlueChallenge.Telemetry.csproj",
         "packagesPath": "C:\\Users\\plesh\\.nuget\\packages\\",
-        "outputPath": "c:\\Users\\plesh\\blue_challenge\\BlueChallenge.Telemetry\\obj\\",
+        "outputPath": "C:\\Users\\plesh\\blue_challenge\\BlueChallenge.Telemetry\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"

@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "MjtxRrEBh2w=",
+  "dgSpecHash": "UiXYT5iCYN4=",
   "success": true,
-  "projectFilePath": "c:\\Users\\plesh\\blue_challenge\\BlueChallenge.Telemetry\\BlueChallenge.Telemetry.csproj",
+  "projectFilePath": "C:\\Users\\plesh\\blue_challenge\\BlueChallenge.Telemetry\\BlueChallenge.Telemetry.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\plesh\\.nuget\\packages\\microsoft.extensions.configuration\\10.0.0-rc.2.25502.107\\microsoft.extensions.configuration.10.0.0-rc.2.25502.107.nupkg.sha512",
     "C:\\Users\\plesh\\.nuget\\packages\\microsoft.extensions.configuration.abstractions\\10.0.0-rc.2.25502.107\\microsoft.extensions.configuration.abstractions.10.0.0-rc.2.25502.107.nupkg.sha512",
