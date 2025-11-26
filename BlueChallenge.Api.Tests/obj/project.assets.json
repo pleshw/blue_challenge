@@ -1791,7 +1791,7 @@
           "Microsoft.EntityFrameworkCore.InMemory": "9.0.0",
           "Microsoft.EntityFrameworkCore.Sqlite": "9.0.0",
           "RabbitMQ.Client": "7.2.0",
-          "Scalar.AspNetCore": "1.7.0"
+          "Scalar.AspNetCore": "2.0.0"
         },
         "compile": {
           "bin/placeholder/BlueChallenge.Api.dll": {}
@@ -4321,17 +4321,5 @@
         "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\10.0.100-rc.2.25502.107/PortableRuntimeIdentifierGraph.json"
       }
     }
-  },
-  "logs": [
-    {
-      "code": "NU1603",
-      "level": "Warning",
-      "warningLevel": 1,
-      "message": "BlueChallenge.Api depende de Scalar.AspNetCore (>= 1.7.0), mas Scalar.AspNetCore 1.7.0 não foi encontrado. Scalar.AspNetCore 2.0.0 foi resolvido em vez disso.",
-      "libraryId": "Scalar.AspNetCore",
-      "targetGraphs": [
-        "net9.0"
-      ]
-    }
-  ]
+  }
 }

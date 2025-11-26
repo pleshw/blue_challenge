@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "LsXMDO5cp/4=",
+  "dgSpecHash": "dr8kBMRZFLw=",
   "success": true,
   "projectFilePath": "C:\\Users\\plesh\\blue_challenge\\BlueChallenge.Api.Tests\\BlueChallenge.Api.Tests.csproj",
   "expectedPackageFiles": [
@@ -92,18 +92,5 @@
     "C:\\Users\\plesh\\.nuget\\packages\\microsoft.windowsdesktop.app.ref\\9.0.10\\microsoft.windowsdesktop.app.ref.9.0.10.nupkg.sha512",
     "C:\\Users\\plesh\\.nuget\\packages\\microsoft.aspnetcore.app.ref\\9.0.10\\microsoft.aspnetcore.app.ref.9.0.10.nupkg.sha512"
   ],
-  "logs": [
-    {
-      "code": "NU1603",
-      "level": "Warning",
-      "message": "BlueChallenge.Api depende de Scalar.AspNetCore (>= 1.7.0), mas Scalar.AspNetCore 1.7.0 não foi encontrado. Scalar.AspNetCore 2.0.0 foi resolvido em vez disso.",
-      "projectPath": "C:\\Users\\plesh\\blue_challenge\\BlueChallenge.Api.Tests\\BlueChallenge.Api.Tests.csproj",
-      "warningLevel": 1,
-      "filePath": "C:\\Users\\plesh\\blue_challenge\\BlueChallenge.Api.Tests\\BlueChallenge.Api.Tests.csproj",
-      "libraryId": "Scalar.AspNetCore",
-      "targetGraphs": [
-        "net9.0"
-      ]
-    }
-  ]
+  "logs": []
 }
