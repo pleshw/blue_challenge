@@ -1373,6 +1373,22 @@
           }
         }
       },
+      "Scalar.AspNetCore/2.0.0": {
+        "type": "package",
+        "compile": {
+          "lib/net9.0/Scalar.AspNetCore.dll": {
+            "related": ".xml"
+          }
+        },
+        "runtime": {
+          "lib/net9.0/Scalar.AspNetCore.dll": {
+            "related": ".xml"
+          }
+        },
+        "frameworkReferences": [
+          "Microsoft.AspNetCore.App"
+        ]
+      },
       "SQLitePCLRaw.bundle_e_sqlite3/2.1.10": {
         "type": "package",
         "dependencies": {
@@ -4201,6 +4217,23 @@
         "rabbitmq.client.nuspec"
       ]
     },
+    "Scalar.AspNetCore/2.0.0": {
+      "sha512": "7o7frlvcpz2qKQGJHP1aS/9vOvEguhEB4mJU3O8VqBuDOu5VGncgfxkhnsOIA0jOKTTe2Apy8zu24L8ShM8j9A==",
+      "type": "package",
+      "path": "scalar.aspnetcore/2.0.0",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "README.md",
+        "icon.png",
+        "lib/net8.0/Scalar.AspNetCore.dll",
+        "lib/net8.0/Scalar.AspNetCore.xml",
+        "lib/net9.0/Scalar.AspNetCore.dll",
+        "lib/net9.0/Scalar.AspNetCore.xml",
+        "scalar.aspnetcore.2.0.0.nupkg.sha512",
+        "scalar.aspnetcore.nuspec"
+      ]
+    },
     "SQLitePCLRaw.bundle_e_sqlite3/2.1.10": {
       "sha512": "UxWuisvZ3uVcVOLJQv7urM/JiQH+v3TmaJc1BLKl5Dxfm/nTzTUrqswCqg/INiYLi61AXnHo1M1JPmPqqLnAdg==",
       "type": "package",
@@ -4876,7 +4909,8 @@
       "Microsoft.EntityFrameworkCore.Design >= 9.0.0",
       "Microsoft.EntityFrameworkCore.InMemory >= 9.0.0",
       "Microsoft.EntityFrameworkCore.Sqlite >= 9.0.0",
-      "RabbitMQ.Client >= 7.2.0"
+      "RabbitMQ.Client >= 7.2.0",
+      "Scalar.AspNetCore >= 1.7.0"
     ]
   },
   "packageFolders": {
@@ -4966,6 +5000,10 @@
           "RabbitMQ.Client": {
             "target": "Package",
             "version": "[7.2.0, )"
+          },
+          "Scalar.AspNetCore": {
+            "target": "Package",
+            "version": "[1.7.0, )"
           }
         },
         "imports": [
@@ -5008,5 +5046,17 @@
         "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\10.0.100-rc.2.25502.107/PortableRuntimeIdentifierGraph.json"
       }
     }
-  }
+  },
+  "logs": [
+    {
+      "code": "NU1603",
+      "level": "Warning",
+      "warningLevel": 1,
+      "message": "BlueChallenge.Api depende de Scalar.AspNetCore (>= 1.7.0), mas Scalar.AspNetCore 1.7.0 não foi encontrado. Scalar.AspNetCore 2.0.0 foi resolvido em vez disso.",
+      "libraryId": "Scalar.AspNetCore",
+      "targetGraphs": [
+        "net9.0"
+      ]
+    }
+  ]
 }

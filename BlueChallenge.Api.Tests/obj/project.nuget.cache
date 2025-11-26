@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "jQpK8SnHYsY=",
+  "dgSpecHash": "LsXMDO5cp/4=",
   "success": true,
   "projectFilePath": "C:\\Users\\plesh\\blue_challenge\\BlueChallenge.Api.Tests\\BlueChallenge.Api.Tests.csproj",
   "expectedPackageFiles": [
@@ -65,6 +65,7 @@
     "C:\\Users\\plesh\\.nuget\\packages\\newtonsoft.json\\13.0.3\\newtonsoft.json.13.0.3.nupkg.sha512",
     "C:\\Users\\plesh\\.nuget\\packages\\nsubstitute\\5.3.0\\nsubstitute.5.3.0.nupkg.sha512",
     "C:\\Users\\plesh\\.nuget\\packages\\rabbitmq.client\\7.2.0\\rabbitmq.client.7.2.0.nupkg.sha512",
+    "C:\\Users\\plesh\\.nuget\\packages\\scalar.aspnetcore\\2.0.0\\scalar.aspnetcore.2.0.0.nupkg.sha512",
     "C:\\Users\\plesh\\.nuget\\packages\\sqlitepclraw.bundle_e_sqlite3\\2.1.10\\sqlitepclraw.bundle_e_sqlite3.2.1.10.nupkg.sha512",
     "C:\\Users\\plesh\\.nuget\\packages\\sqlitepclraw.core\\2.1.10\\sqlitepclraw.core.2.1.10.nupkg.sha512",
     "C:\\Users\\plesh\\.nuget\\packages\\sqlitepclraw.lib.e_sqlite3\\2.1.10\\sqlitepclraw.lib.e_sqlite3.2.1.10.nupkg.sha512",
@@ -91,5 +92,18 @@
     "C:\\Users\\plesh\\.nuget\\packages\\microsoft.windowsdesktop.app.ref\\9.0.10\\microsoft.windowsdesktop.app.ref.9.0.10.nupkg.sha512",
     "C:\\Users\\plesh\\.nuget\\packages\\microsoft.aspnetcore.app.ref\\9.0.10\\microsoft.aspnetcore.app.ref.9.0.10.nupkg.sha512"
   ],
-  "logs": []
+  "logs": [
+    {
+      "code": "NU1603",
+      "level": "Warning",
+      "message": "BlueChallenge.Api depende de Scalar.AspNetCore (>= 1.7.0), mas Scalar.AspNetCore 1.7.0 não foi encontrado. Scalar.AspNetCore 2.0.0 foi resolvido em vez disso.",
+      "projectPath": "C:\\Users\\plesh\\blue_challenge\\BlueChallenge.Api.Tests\\BlueChallenge.Api.Tests.csproj",
+      "warningLevel": 1,
+      "filePath": "C:\\Users\\plesh\\blue_challenge\\BlueChallenge.Api.Tests\\BlueChallenge.Api.Tests.csproj",
+      "libraryId": "Scalar.AspNetCore",
+      "targetGraphs": [
+        "net9.0"
+      ]
+    }
+  ]
 }
