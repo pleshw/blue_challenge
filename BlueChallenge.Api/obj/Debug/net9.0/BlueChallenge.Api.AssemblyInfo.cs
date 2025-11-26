@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("BlueChallenge.Api")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+5303aee1c1a3d4f002068fdec7bbb4439e91f59e")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+0f5e9027010babeba5095ddacbba0885598fa526")]
 [assembly: System.Reflection.AssemblyProductAttribute("BlueChallenge.Api")]
 [assembly: System.Reflection.AssemblyTitleAttribute("BlueChallenge.Api")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

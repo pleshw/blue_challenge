@@ -70,13 +70,20 @@ public class UserService
         var parts = fullEmail.Split('@');
         if (parts.Length != 2)
         {
-            throw new ArgumentException("Invalid email format.");
+            throw new ArgumentException("Invalid email format.", nameof(fullEmail));
         }
 
-        return new EmailModel
+        try
         {
-            Alias = parts[0],
-            Provider = parts[1]
-        };
+            return new EmailModel
+            {
+                Alias = parts[0],
+                Provider = parts[1]
+            };
+        }
+        catch (ArgumentException ex)
+        {
+            throw new ArgumentException(ex.Message, nameof(fullEmail), ex);
+        }
     }
 }

@@ -15,6 +15,11 @@ public class ScheduleRepository : IScheduleRepository
 
     public async Task CreateAsync(ScheduleModel schedule, CancellationToken cancellationToken = default)
     {
+        if (schedule.User is not null)
+        {
+            _context.Users.Attach(schedule.User);
+        }
+
         await _context.Schedules.AddAsync(schedule, cancellationToken);
         await _context.SaveChangesAsync(cancellationToken);
     }
@@ -39,6 +44,11 @@ public class ScheduleRepository : IScheduleRepository
 
     public async Task UpdateAsync(ScheduleModel schedule, CancellationToken cancellationToken = default)
     {
+        if (schedule.User is not null)
+        {
+            _context.Users.Attach(schedule.User);
+        }
+
         _context.Schedules.Update(schedule);
         await _context.SaveChangesAsync(cancellationToken);
     }

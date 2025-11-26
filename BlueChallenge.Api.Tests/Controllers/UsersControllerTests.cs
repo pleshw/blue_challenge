@@ -7,6 +7,7 @@ using FluentAssertions;
 
 namespace BlueChallenge.Api.Tests.Controllers;
 
+[Collection("Integration Tests")]
 public class UsersControllerTests : IntegrationTestBase
 {
     public UsersControllerTests(TestWebApplicationFactory factory) : base(factory)

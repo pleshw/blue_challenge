@@ -35,6 +35,18 @@ public class UserRepository : IUserRepository
         return users;
     }
 
+    public async Task<UserModel?> GetByEmailAsync(string alias, string provider, CancellationToken cancellationToken = default)
+    {
+        ArgumentException.ThrowIfNullOrEmpty(alias);
+        ArgumentException.ThrowIfNullOrEmpty(provider);
+
+        return await _context.Users
+            .AsNoTracking()
+            .FirstOrDefaultAsync(
+                user => user.Credentials.Email.Alias == alias && user.Credentials.Email.Provider == provider,
+                cancellationToken);
+    }
+
     public async Task UpdateAsync(UserModel user, CancellationToken cancellationToken = default)
     {
         _context.Users.Update(user);

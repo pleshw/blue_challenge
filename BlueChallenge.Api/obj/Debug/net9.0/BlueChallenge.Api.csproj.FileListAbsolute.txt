@@ -147,3 +147,12 @@ C:\Users\plesh\blue_challenge\BlueChallenge.Api\obj\Debug\net9.0\BlueChallenge.A
 C:\Users\plesh\blue_challenge\BlueChallenge.Api\obj\Debug\net9.0\BlueChallenge.Api.genruntimeconfig.cache
 C:\Users\plesh\blue_challenge\BlueChallenge.Api\obj\Debug\net9.0\ref\BlueChallenge.Api.dll
 C:\Users\plesh\blue_challenge\BlueChallenge.Api\bin\Debug\net9.0\Microsoft.EntityFrameworkCore.InMemory.dll
+C:\Users\plesh\blue_challenge\BlueChallenge.Api\obj\Debug\net9.0\BlueChallenge.Api.sourcelink.json
+C:\Users\plesh\blue_challenge\BlueChallenge.Api\bin\Debug\net9.0\Microsoft.AspNetCore.Authentication.JwtBearer.dll
+C:\Users\plesh\blue_challenge\BlueChallenge.Api\bin\Debug\net9.0\Microsoft.IdentityModel.Abstractions.dll
+C:\Users\plesh\blue_challenge\BlueChallenge.Api\bin\Debug\net9.0\Microsoft.IdentityModel.JsonWebTokens.dll
+C:\Users\plesh\blue_challenge\BlueChallenge.Api\bin\Debug\net9.0\Microsoft.IdentityModel.Logging.dll
+C:\Users\plesh\blue_challenge\BlueChallenge.Api\bin\Debug\net9.0\Microsoft.IdentityModel.Protocols.dll
+C:\Users\plesh\blue_challenge\BlueChallenge.Api\bin\Debug\net9.0\Microsoft.IdentityModel.Protocols.OpenIdConnect.dll
+C:\Users\plesh\blue_challenge\BlueChallenge.Api\bin\Debug\net9.0\Microsoft.IdentityModel.Tokens.dll
+C:\Users\plesh\blue_challenge\BlueChallenge.Api\bin\Debug\net9.0\System.IdentityModel.Tokens.Jwt.dll

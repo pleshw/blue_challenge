@@ -27,6 +27,8 @@ public class RabbitMqConsumer : BackgroundService
             return;
         }
 
+        var queueName = _configuration["RabbitMq:TelemetryQueue"] ?? "telemetry";
+
         var factory = new ConnectionFactory
         {
             HostName = _configuration["RabbitMq:Host"] ?? "localhost",
@@ -36,62 +38,84 @@ public class RabbitMqConsumer : BackgroundService
             VirtualHost = _configuration["RabbitMq:VirtualHost"] ?? ConnectionFactory.DefaultVHost
         };
 
-        IConnection? connection = null;
-        IChannel? channel = null;
-
-        try
+        while (!stoppingToken.IsCancellationRequested)
         {
-            connection = await factory.CreateConnectionAsync(stoppingToken);
-            channel = await connection.CreateChannelAsync(
-                new CreateChannelOptions(
-                    publisherConfirmationsEnabled: false,
-                    publisherConfirmationTrackingEnabled: false,
-                    outstandingPublisherConfirmationsRateLimiter: null,
-                    consumerDispatchConcurrency: null),
-                stoppingToken);
+            IConnection? connection = null;
+            IChannel? channel = null;
 
-            await channel.QueueDeclareAsync(
-                queue: "telemetry",
-                durable: true,
-                exclusive: false,
-                autoDelete: false,
-                arguments: null,
-                noWait: false,
-                cancellationToken: stoppingToken);
-
-            var consumer = new AsyncEventingBasicConsumer(channel);
-            consumer.ReceivedAsync += async (_, ea) =>
+            try
             {
-                var message = Encoding.UTF8.GetString(ea.Body.Span);
-                var (user, eventType) = ExtractRoutingInfo(message);
-                await _fileWriter.WriteAsync(user, message, stoppingToken);
-                _logger.LogInformation("Received telemetry event {EventType} for {User}: {Message}", eventType, user, message);
-            };
+                connection = await factory.CreateConnectionAsync(stoppingToken);
+                channel = await connection.CreateChannelAsync(
+                    new CreateChannelOptions(
+                        publisherConfirmationsEnabled: false,
+                        publisherConfirmationTrackingEnabled: false,
+                        outstandingPublisherConfirmationsRateLimiter: null,
+                        consumerDispatchConcurrency: null),
+                    stoppingToken);
 
-            await channel.BasicConsumeAsync(
-                queue: "telemetry",
-                autoAck: true,
-                consumer: consumer,
-                cancellationToken: stoppingToken);
+                await channel.QueueDeclareAsync(
+                    queue: queueName,
+                    durable: true,
+                    exclusive: false,
+                    autoDelete: false,
+                    arguments: null,
+                    noWait: false,
+                    cancellationToken: stoppingToken);
 
-            await Task.Delay(Timeout.Infinite, stoppingToken);
-        }
-        catch (TaskCanceledException)
-        {
-            // Normal shutdown
-        }
-        finally
-        {
-            if (channel is not null)
-            {
-                await channel.CloseAsync(Constants.ReplySuccess, "Shutting down", false, CancellationToken.None);
-                channel.Dispose();
+                var consumer = new AsyncEventingBasicConsumer(channel);
+                consumer.ReceivedAsync += async (_, ea) =>
+                {
+                    var message = Encoding.UTF8.GetString(ea.Body.Span);
+                    var (user, eventType) = ExtractRoutingInfo(message);
+                    await _fileWriter.WriteAsync(user, message, stoppingToken);
+                    _logger.LogInformation("Received telemetry event {EventType} for {User}: {Message}", eventType, user, message);
+                };
+
+                await channel.BasicConsumeAsync(
+                    queue: queueName,
+                    autoAck: true,
+                    consumer: consumer,
+                    cancellationToken: stoppingToken);
+
+                await Task.Delay(Timeout.Infinite, stoppingToken);
             }
-
-            if (connection is not null)
+            catch (TaskCanceledException)
             {
-                await connection.CloseAsync(stoppingToken);
-                connection.Dispose();
+                break;
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, "RabbitMQ consumer disconnected. Retrying in 5 seconds...");
+                await Task.Delay(TimeSpan.FromSeconds(5), stoppingToken);
+            }
+            finally
+            {
+                if (channel is not null)
+                {
+                    try
+                    {
+                        await channel.CloseAsync(Constants.ReplySuccess, "Shutting down", false, CancellationToken.None);
+                    }
+                    catch (Exception closeEx)
+                    {
+                        _logger.LogDebug(closeEx, "Failed to close RabbitMQ channel cleanly");
+                    }
+                    channel.Dispose();
+                }
+
+                if (connection is not null)
+                {
+                    try
+                    {
+                        await connection.CloseAsync(CancellationToken.None);
+                    }
+                    catch (Exception closeEx)
+                    {
+                        _logger.LogDebug(closeEx, "Failed to close RabbitMQ connection cleanly");
+                    }
+                    connection.Dispose();
+                }
             }
         }
     }

@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "UiXYT5iCYN4=",
+  "dgSpecHash": "I9VMiHuFq6g=",
   "success": true,
   "projectFilePath": "C:\\Users\\plesh\\blue_challenge\\BlueChallenge.Telemetry\\BlueChallenge.Telemetry.csproj",
   "expectedPackageFiles": [
@@ -32,8 +32,16 @@
     "C:\\Users\\plesh\\.nuget\\packages\\microsoft.extensions.options.configurationextensions\\10.0.0-rc.2.25502.107\\microsoft.extensions.options.configurationextensions.10.0.0-rc.2.25502.107.nupkg.sha512",
     "C:\\Users\\plesh\\.nuget\\packages\\microsoft.extensions.primitives\\10.0.0-rc.2.25502.107\\microsoft.extensions.primitives.10.0.0-rc.2.25502.107.nupkg.sha512",
     "C:\\Users\\plesh\\.nuget\\packages\\rabbitmq.client\\7.2.0\\rabbitmq.client.7.2.0.nupkg.sha512",
+    "C:\\Users\\plesh\\.nuget\\packages\\system.diagnostics.diagnosticsource\\10.0.0-rc.2.25502.107\\system.diagnostics.diagnosticsource.10.0.0-rc.2.25502.107.nupkg.sha512",
     "C:\\Users\\plesh\\.nuget\\packages\\system.diagnostics.eventlog\\10.0.0-rc.2.25502.107\\system.diagnostics.eventlog.10.0.0-rc.2.25502.107.nupkg.sha512",
-    "C:\\Users\\plesh\\.nuget\\packages\\system.threading.ratelimiting\\8.0.0\\system.threading.ratelimiting.8.0.0.nupkg.sha512"
+    "C:\\Users\\plesh\\.nuget\\packages\\system.io.pipelines\\10.0.0-rc.2.25502.107\\system.io.pipelines.10.0.0-rc.2.25502.107.nupkg.sha512",
+    "C:\\Users\\plesh\\.nuget\\packages\\system.text.encodings.web\\10.0.0-rc.2.25502.107\\system.text.encodings.web.10.0.0-rc.2.25502.107.nupkg.sha512",
+    "C:\\Users\\plesh\\.nuget\\packages\\system.text.json\\10.0.0-rc.2.25502.107\\system.text.json.10.0.0-rc.2.25502.107.nupkg.sha512",
+    "C:\\Users\\plesh\\.nuget\\packages\\system.threading.ratelimiting\\8.0.0\\system.threading.ratelimiting.8.0.0.nupkg.sha512",
+    "C:\\Users\\plesh\\.nuget\\packages\\microsoft.netcore.app.ref\\9.0.10\\microsoft.netcore.app.ref.9.0.10.nupkg.sha512",
+    "C:\\Users\\plesh\\.nuget\\packages\\microsoft.windowsdesktop.app.ref\\9.0.10\\microsoft.windowsdesktop.app.ref.9.0.10.nupkg.sha512",
+    "C:\\Users\\plesh\\.nuget\\packages\\microsoft.aspnetcore.app.ref\\9.0.10\\microsoft.aspnetcore.app.ref.9.0.10.nupkg.sha512",
+    "C:\\Users\\plesh\\.nuget\\packages\\microsoft.netcore.app.host.win-x64\\9.0.10\\microsoft.netcore.app.host.win-x64.9.0.10.nupkg.sha512"
   ],
   "logs": []
 }

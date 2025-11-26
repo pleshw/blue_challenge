@@ -1,0 +1,70 @@
+services:
+  rabbitmq:
+    image: rabbitmq:3.13-management
+    container_name: bluechallenge-rabbitmq
+    environment:
+      RABBITMQ_DEFAULT_USER: guest
+      RABBITMQ_DEFAULT_PASS: guest
+    ports:
+      - "5672:5672"
+      - "15672:15672"
+    volumes:
+      - rabbitmq_data:/var/lib/rabbitmq
+
+  api:
+    build:
+      context: .
+      dockerfile: BlueChallenge.Api/Dockerfile
+    container_name: bluechallenge-api
+    depends_on:
+      - rabbitmq
+    environment:
+      ASPNETCORE_ENVIRONMENT: Development
+      ASPNETCORE_URLS: http://+:8080
+      Database__ConnectionString: Data Source=/data/app.db
+      RabbitMq__Host: rabbitmq
+      RabbitMq__Port: 5672
+      RabbitMq__VirtualHost: /
+      RabbitMq__User: guest
+      RabbitMq__Password: guest
+      RabbitMq__TelemetryQueue: telemetry
+      Telemetry__EnableConsumer: "false"
+      Telemetry__StoragePath: /telemetry
+    volumes:
+      - ./BlueChallenge.Api/storage:/data
+      - telemetry_logs:/telemetry
+    ports:
+      - "8080:8080"
+
+  telemetry:
+    build:
+      context: .
+      dockerfile: BlueChallenge.Telemetry/Dockerfile
+    container_name: bluechallenge-telemetry
+    depends_on:
+      - rabbitmq
+    environment:
+      DOTNET_ENVIRONMENT: Production
+      RabbitMq__Host: rabbitmq
+      RabbitMq__Port: 5672
+      RabbitMq__VirtualHost: /
+      RabbitMq__User: guest
+      RabbitMq__Password: guest
+      RabbitMq__TelemetryQueue: telemetry
+      Telemetry__StoragePath: /telemetry
+    volumes:
+      - telemetry_logs:/telemetry
+
+  web:
+    build:
+      context: .
+      dockerfile: BlueChallenge.Web/Dockerfile
+    container_name: bluechallenge-web
+    depends_on:
+      - api
+    ports:
+      - "4173:80"
+
+volumes:
+  rabbitmq_data:
+  telemetry_logs:

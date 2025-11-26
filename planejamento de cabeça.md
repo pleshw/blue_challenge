@@ -15,7 +15,7 @@ ps: não vou fazer microsserviços para manter o projeto simples, mas para uma a
 
 - Cliente cadastra no sistema
   - Publica a mensagem UserRegistered que vai adicionar os dados na telemetria via Logger
-- Cliente acessa o sistema usando UserCredentials
+- Cliente acessa o sistema usando UserCredentials - JWT simples pra não atrasar muito o desenvolvimento, OAuth ia ser o ideal
   - Publica a mensagem UserLogin para adicionar login na telemetria e mandar email avisando novo login no dispositivo
 - Usuario insere agendamento
   - Controller usa ScheduleService para criar o modelo do agendamento através do ScheduleBuilder
