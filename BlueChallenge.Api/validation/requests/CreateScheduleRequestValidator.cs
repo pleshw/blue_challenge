@@ -18,10 +18,11 @@ namespace BlueChallenge.Api.Validation.Requests
                 .NotEmpty().WithMessage("Description is required.")
                 .MaximumLength(512).WithMessage("Description must be 512 characters or fewer.");
 
-            When(request => request.IsAllDay, () =>
+            // When NOT all day, hour range is required
+            When(request => !request.IsAllDay, () =>
             {
                 RuleFor(request => request.HourRange)
-                    .NotNull().WithMessage("Hour range is required when the schedule is all day.");
+                    .NotNull().WithMessage("Hour range is required when the schedule is not all day.");
 
                 When(request => request.HourRange is not null, () =>
                 {
@@ -30,7 +31,8 @@ namespace BlueChallenge.Api.Validation.Requests
                 });
             });
 
-            When(request => !request.IsAllDay && request.HourRange is not null, () =>
+            // When all day, hour range should be null (optional validation)
+            When(request => request.IsAllDay && request.HourRange is not null, () =>
             {
                 RuleFor(request => request.HourRange!)
                     .SetValidator(new HourRangeRequestValidator());

@@ -20,7 +20,7 @@ public class ScheduleModelValidator : AbstractValidator<ScheduleModel>
             .SetValidator(new UserModelValidator());
 
         RuleFor(schedule => schedule.HourRange)
-            .NotNull().WithMessage("Hour range is required when the schedule is all day.")
-            .When(schedule => schedule.IsAllDay);
+            .NotNull().WithMessage("Hour range is required when the schedule is not all day.")
+            .When(schedule => !schedule.IsAllDay);
     }
 }

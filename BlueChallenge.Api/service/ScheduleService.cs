@@ -62,10 +62,10 @@ public class ScheduleService
 
     private void ValidateHourRange(bool isAllDay, HourRange? hourRange)
     {
-        if (isAllDay && hourRange == null)
+        if (!isAllDay && hourRange == null)
         {
-            _ = TelemetryProducer.PublishAsync("ScheduleServiceError", "Hour range is required when the schedule is all day.");
-            throw new ArgumentException("Hour range is required when the schedule is all day.", nameof(hourRange));
+            _ = TelemetryProducer.PublishAsync("ScheduleServiceError", "Hour range is required when the schedule is not all day.");
+            throw new ArgumentException("Hour range is required when the schedule is not all day.", nameof(hourRange));
         }
     }
 }
