@@ -35,4 +35,45 @@ body {
 .w-full {
   width: 100%;
 }
+
+/* Botões quadrados */
+.p-button {
+  border-radius: 0 !important;
+}
+
+.p-card {
+  border-radius: 0 !important;
+}
+
+.p-datatable .p-datatable-thead > tr > th,
+.p-datatable .p-datatable-tbody > tr > td {
+  border-radius: 0 !important;
+}
+
+.p-dialog {
+  border-radius: 0 !important;
+}
+
+.p-dialog .p-dialog-header {
+  border-radius: 0 !important;
+}
+
+.p-dialog .p-dialog-content {
+  border-radius: 0 !important;
+}
+
+.p-dialog .p-dialog-footer {
+  border-radius: 0 !important;
+}
+
+.p-inputtext,
+.p-select,
+.p-textarea,
+.p-datepicker {
+  border-radius: 0 !important;
+}
+
+.p-tag {
+  border-radius: 0 !important;
+}
 </style>
