@@ -100,7 +100,7 @@ function goToRegister() {
   display: flex;
   align-items: center;
   justify-content: center;
-  background: linear-gradient(135deg, var(--p-primary-100) 0%, var(--p-primary-200) 100%);
+  background: linear-gradient(135deg, #001433 0%, #003d99 100%);
 }
 
 .login-card {

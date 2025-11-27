@@ -598,16 +598,20 @@ async function handleSubmit() {
 
 .action-card {
   cursor: pointer;
-  transition: transform 0.2s, box-shadow 0.2s;
-  background: linear-gradient(135deg, var(--p-primary-400) 0%, var(--p-primary-500) 50%, var(--p-primary-600) 100%) !important;
+  transition: box-shadow 0.2s;
+  background: linear-gradient(90deg, #4d94ff 0%, #1a75ff 70%, #0052cc 100%) !important;
   border: 3px solid var(--p-surface-0) !important;
-  box-shadow: 0 4px 15px color-mix(in srgb, var(--p-primary-500) 40%, transparent);
+  box-shadow: 0 4px 15px rgba(0, 102, 255, 0.3);
   min-width: 300px;
 }
 
 .action-card:hover {
-  transform: translateY(-4px) scale(1.02);
-  box-shadow: 0 8px 30px color-mix(in srgb, var(--p-primary-500) 50%, transparent);
+  box-shadow: 0 8px 30px rgba(0, 102, 255, 0.4);
+  background: linear-gradient(90deg, #80b3ff 0%, #4d94ff 70%, #1a75ff 100%) !important;
+}
+
+.action-card:hover .action-text {
+  text-decoration: underline;
 }
 
 .action-content {
