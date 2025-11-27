@@ -600,7 +600,6 @@ async function handleSubmit() {
   display: flex;
   align-items: center;
   justify-content: center;
-  transition: all 0.2s ease;
 }
 
 .action-card:hover {
@@ -617,7 +616,6 @@ async function handleSubmit() {
   font-size: 1.5rem;
   font-weight: 700;
   color: #0066ff;
-  transition: color 0.2s ease;
 }
 
 /* Estilos do Dialog */

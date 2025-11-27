@@ -118,7 +118,6 @@ function handleLogout() {
   cursor: pointer;
   color: #374151;
   font-size: 0.95rem;
-  transition: all 0.2s;
   text-align: left;
 }
 

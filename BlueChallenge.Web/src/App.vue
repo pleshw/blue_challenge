@@ -76,4 +76,25 @@ body {
 .p-tag {
   border-radius: 0 !important;
 }
+
+/* Paginators */
+.p-paginator {
+  border-radius: 0 !important;
+}
+
+.p-paginator .p-paginator-first,
+.p-paginator .p-paginator-prev,
+.p-paginator .p-paginator-next,
+.p-paginator .p-paginator-last,
+.p-paginator .p-paginator-page {
+  border-radius: 0 !important;
+}
+
+.p-paginator .p-dropdown {
+  border-radius: 0 !important;
+}
+
+.p-paginator .p-inputtext {
+  border-radius: 0 !important;
+}
 </style>
