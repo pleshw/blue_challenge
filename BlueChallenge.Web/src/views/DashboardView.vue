@@ -105,7 +105,28 @@ const today = computed(() => {
   return new Date(now.getFullYear(), now.getMonth(), now.getDate()).getTime()
 })
 
-// Agendamentos futuros e de hoje (ordenados por data crescente)
+// Função para obter o timestamp completo (data + hora)
+function getFullDateTime(schedule: { dateRange: { start: string; end: string }; hourRange?: { start: string; end: string } | null; isAllDay: boolean }, useStart: boolean): number {
+  const dateStr = useStart ? schedule.dateRange.start : schedule.dateRange.end
+  const date = new Date(dateStr)
+  
+  if (!schedule.isAllDay && schedule.hourRange) {
+    const timeStr = useStart ? schedule.hourRange.start : schedule.hourRange.end
+    const [hours, minutes] = timeStr.split(':').map(Number)
+    date.setHours(hours ?? 0, minutes ?? 0, 0, 0)
+  } else {
+    // Dia todo: início às 00:00, fim às 23:59
+    if (useStart) {
+      date.setHours(0, 0, 0, 0)
+    } else {
+      date.setHours(23, 59, 59, 999)
+    }
+  }
+  
+  return date.getTime()
+}
+
+// Agendamentos futuros e de hoje (ordenados por data e hora crescente)
 const upcomingSchedules = computed(() => {
   return schedulesStore.schedules
     .filter((s) => {
@@ -113,10 +134,10 @@ const upcomingSchedules = computed(() => {
       const endDateTime = new Date(endDate.getFullYear(), endDate.getMonth(), endDate.getDate()).getTime()
       return endDateTime >= today.value
     })
-    .sort((a, b) => new Date(a.dateRange.start).getTime() - new Date(b.dateRange.start).getTime())
+    .sort((a, b) => getFullDateTime(a, true) - getFullDateTime(b, true))
 })
 
-// Agendamentos passados (ordenados por data decrescente - mais recentes primeiro)
+// Agendamentos passados (ordenados por data e hora decrescente - mais recentes primeiro)
 const pastSchedules = computed(() => {
   return schedulesStore.schedules
     .filter((s) => {
@@ -124,7 +145,7 @@ const pastSchedules = computed(() => {
       const endDateTime = new Date(endDate.getFullYear(), endDate.getMonth(), endDate.getDate()).getTime()
       return endDateTime < today.value
     })
-    .sort((a, b) => new Date(b.dateRange.end).getTime() - new Date(a.dateRange.end).getTime())
+    .sort((a, b) => getFullDateTime(b, false) - getFullDateTime(a, false))
 })
 
 function isToday(schedule: { dateRange: { start: string; end: string } }): boolean {
@@ -137,6 +158,21 @@ function isToday(schedule: { dateRange: { start: string; end: string } }): boole
 
 function formatDate(dateString: string): string {
   return new Date(dateString).toLocaleDateString('pt-BR')
+}
+
+// Funções de ordenação customizadas para incluir horário
+function sortByStartDateTime(event: { data: typeof schedulesStore.schedules; order: number }) {
+  return event.data.sort((a, b) => {
+    const diff = getFullDateTime(a, true) - getFullDateTime(b, true)
+    return event.order === 1 ? diff : -diff
+  })
+}
+
+function sortByEndDateTime(event: { data: typeof schedulesStore.schedules; order: number }) {
+  return event.data.sort((a, b) => {
+    const diff = getFullDateTime(a, false) - getFullDateTime(b, false)
+    return event.order === 1 ? diff : -diff
+  })
 }
 
 function getRowClass(data: { dateRange: { start: string; end: string } }): string {
@@ -258,13 +294,13 @@ async function handleSubmit() {
 
           <Column field="description" header="Descrição" style="width: 25%"></Column>
 
-          <Column field="dateRange.start" header="Data Inicial" sortable style="width: 15%">
+          <Column field="dateRange.start" header="Data Inicial" sortable :sortFunction="sortByStartDateTime" style="width: 15%">
             <template #body="{ data }">
               <span>{{ formatDate(data.dateRange.start) }}</span>
             </template>
           </Column>
 
-          <Column field="dateRange.end" header="Data Final" sortable style="width: 15%">
+          <Column field="dateRange.end" header="Data Final" sortable :sortFunction="sortByEndDateTime" style="width: 15%">
             <template #body="{ data }">
               <span>{{ formatDate(data.dateRange.end) }}</span>
             </template>
@@ -315,13 +351,13 @@ async function handleSubmit() {
 
           <Column field="description" header="Descrição" style="width: 25%"></Column>
 
-          <Column field="dateRange.start" header="Data Inicial" sortable style="width: 15%">
+          <Column field="dateRange.start" header="Data Inicial" sortable :sortFunction="sortByStartDateTime" style="width: 15%">
             <template #body="{ data }">
               <span>{{ formatDate(data.dateRange.start) }}</span>
             </template>
           </Column>
 
-          <Column field="dateRange.end" header="Data Final" sortable style="width: 15%">
+          <Column field="dateRange.end" header="Data Final" sortable :sortFunction="sortByEndDateTime" style="width: 15%">
             <template #body="{ data }">
               <span>{{ formatDate(data.dateRange.end) }}</span>
             </template>
