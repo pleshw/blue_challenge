@@ -55,6 +55,57 @@ const userOptions = computed(() =>
   }))
 )
 
+// Validações de datas e horas
+const minEndDate = computed(() => form.value.startDate || undefined)
+
+const isDateRangeValid = computed(() => {
+  if (!form.value.startDate || !form.value.endDate) return true
+  return form.value.endDate >= form.value.startDate
+})
+
+const isHourRangeValid = computed(() => {
+  if (form.value.isAllDay) return true
+  if (!form.value.startTime || !form.value.endTime) return true
+  
+  // Se as datas são iguais, validar as horas
+  if (form.value.startDate && form.value.endDate) {
+    const sameDay = form.value.startDate.toDateString() === form.value.endDate.toDateString()
+    if (sameDay) {
+      return form.value.endTime >= form.value.startTime
+    }
+  }
+  return true
+})
+
+const isFormValid = computed(() => {
+  return (
+    form.value.userId &&
+    form.value.description &&
+    form.value.startDate &&
+    form.value.endDate &&
+    isDateRangeValid.value &&
+    isHourRangeValid.value &&
+    (form.value.isAllDay || (form.value.startTime && form.value.endTime))
+  )
+})
+
+const dateValidationError = computed(() => {
+  if (!isDateRangeValid.value) {
+    return 'A data fim não pode ser anterior à data início'
+  }
+  return null
+})
+
+const hourValidationError = computed(() => {
+  if (!isHourRangeValid.value) {
+    return 'A hora fim não pode ser anterior à hora início no mesmo dia'
+  }
+  if (!form.value.isAllDay && (!form.value.startTime || !form.value.endTime)) {
+    return 'Informe a hora início e hora fim'
+  }
+  return null
+})
+
 onMounted(() => {
   schedulesStore.fetchSchedules()
   usersStore.fetchUsers()
@@ -355,11 +406,15 @@ function confirmDelete(schedule: ISchedule) {
               placeholder="Selecione"
               class="w-full"
               :disabled="schedulesStore.loading"
+              :minDate="minEndDate"
+              :class="{ 'p-invalid': !isDateRangeValid }"
               showIcon
               required
             />
           </div>
         </div>
+
+        <small v-if="dateValidationError" class="p-error">{{ dateValidationError }}</small>
 
         <div class="field-checkbox">
           <Checkbox
@@ -382,6 +437,7 @@ function confirmDelete(schedule: ISchedule) {
               placeholder="HH:MM"
               class="w-full"
               :disabled="schedulesStore.loading"
+              required
             />
           </div>
 
@@ -395,9 +451,13 @@ function confirmDelete(schedule: ISchedule) {
               placeholder="HH:MM"
               class="w-full"
               :disabled="schedulesStore.loading"
+              :class="{ 'p-invalid': !isHourRangeValid }"
+              required
             />
           </div>
         </div>
+
+        <small v-if="hourValidationError" class="p-error">{{ hourValidationError }}</small>
 
         <div class="dialog-actions">
           <Button
@@ -411,6 +471,7 @@ function confirmDelete(schedule: ISchedule) {
             type="submit"
             :label="isEditing ? 'Salvar' : 'Criar'"
             :loading="schedulesStore.loading"
+            :disabled="!isFormValid || schedulesStore.loading"
           />
         </div>
       </form>
