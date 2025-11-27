@@ -250,13 +250,9 @@ async function handleSubmit() {
     </div>
 
     <div class="action-wrapper">
-      <Card class="action-card" @click="openCreateDialog">
-        <template #content>
-          <div class="action-content">
-            <span class="action-text">Novo Agendamento</span>
-          </div>
-        </template>
-      </Card>
+      <div class="action-card" @click="openCreateDialog">
+        <span class="action-title">Novo Agendamento</span>
+      </div>
     </div>
 
     <Card class="schedules-card">
@@ -598,34 +594,30 @@ async function handleSubmit() {
 
 .action-card {
   cursor: pointer;
-  transition: box-shadow 0.2s;
-  background: linear-gradient(90deg, #4d94ff 0%, #1a75ff 70%, #0052cc 100%) !important;
-  border: 3px solid var(--p-surface-0) !important;
-  box-shadow: 0 4px 15px rgba(0, 102, 255, 0.3);
-  min-width: 300px;
+  background: #fff;
+  border: 2px solid #0066ff;
+  padding: 1.5rem 3rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s ease;
 }
 
 .action-card:hover {
-  box-shadow: 0 8px 30px rgba(0, 102, 255, 0.4);
-  background: linear-gradient(90deg, #80b3ff 0%, #4d94ff 70%, #1a75ff 100%) !important;
+  background: linear-gradient(135deg, #0066ff 0%, #4d94ff 100%);
+  border-color: #fff;
 }
 
-.action-card:hover .action-text {
+.action-card:hover .action-title {
   text-decoration: underline;
+  color: #fff;
 }
 
-.action-content {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  min-height: 60px;
-}
-
-.action-text {
+.action-title {
   font-size: 1.5rem;
   font-weight: 700;
-  color: white;
-  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
+  color: #0066ff;
+  transition: color 0.2s ease;
 }
 
 /* Estilos do Dialog */
